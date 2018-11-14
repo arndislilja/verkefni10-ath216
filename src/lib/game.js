@@ -58,7 +58,9 @@ function showQuestion() {
  * - Sýnir fyrstu spurningu
  */
 function start() {
-  // todo útfæra
+  do {
+    showQuestion();
+  }
 }
 
 /**
