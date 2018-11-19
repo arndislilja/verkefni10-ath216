@@ -10,6 +10,7 @@ let playTime; // hversu lengi á að spila? Sent inn gegnum init()
 let total = 0; // fjöldi spurninga í núverandi leik
 let correct = 0; // fjöldi réttra svara í núverandi leik
 let currentProblem; // spurning sem er verið að sýna
+let currentQuestion;
 
 /**
  * Klárar leik. Birtir result og felur problem. Reiknar stig og birtir í result.
@@ -32,21 +33,34 @@ function finish() {
  */
 function tick(current) {
   // todo uppfæra tíma á síðu
-
-  if (current <= 0) {
-    return finish();
-  }
-
-  return () => {
-    setTimeout(tick(current - 1), 1000);
-  };
-}
+  setTimeout(() => {
+    if (current <= 1) {
+      timer.removeChild(timer.firstChild);
+      return finish();
+    }
+    return tick(current - 1);
+  }, 1000);
+ }
 
 /**
  * Býr til nýja spurningu og sýnir undir .problem__question
  */
 function showQuestion() {
   // todo útfæra
+  import question from './question';
+
+  currentQuestion = question();
+  
+  const question = createProblem();
+
+  const answer = prompt('Hvað er ${question.problem}?');
+
+  if (answer === null) {
+    return null;
+  }
+  const answerParsed = parseInt(answer);
+  
+  return question.answer === answerParsed;
 }
 
 /**
@@ -58,6 +72,7 @@ function showQuestion() {
  * - Sýnir fyrstu spurningu
  */
 function start() {
+  
   do {
     showQuestion();
   }
