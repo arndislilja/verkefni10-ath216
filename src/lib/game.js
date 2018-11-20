@@ -72,7 +72,14 @@ function showQuestion() {
  * - Sýnir fyrstu spurningu
  */
 function start() {
-  
+  const startButton = document.querySelector('start button button--large');
+  startButton.addEventListener('click', () => {
+
+  });
+  function startButton() {
+    console.log('Ýtt hefur verið á takka.');
+    startButton.removeEventListener('click', startButton);
+  }
   do {
     showQuestion();
   }
