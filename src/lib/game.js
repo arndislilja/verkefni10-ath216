@@ -33,11 +33,13 @@ function finish() {
  */
 function tick(current) {
   // todo uppfæra tíma á síðu
+
   setTimeout(() => {
     if (current <= 1) {
       timer.removeChild(timer.firstChild);
       return finish();
     }
+    
     return tick(current - 1);
   }, 1000);
  }
